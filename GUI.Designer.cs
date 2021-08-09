@@ -1,7 +1,7 @@
 ﻿
 namespace Vegas_Oscillator_Randomizer
 {
-    partial class Form1
+    partial class GUI
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,34 @@ namespace Vegas_Oscillator_Randomizer
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.applyBtn = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // applyBtn
+            // 
+            this.applyBtn.Location = new System.Drawing.Point(12, 391);
+            this.applyBtn.Name = "applyBtn";
+            this.applyBtn.Size = new System.Drawing.Size(91, 47);
+            this.applyBtn.TabIndex = 0;
+            this.applyBtn.Text = "Apply";
+            this.applyBtn.UseVisualStyleBackColor = true;
+            this.applyBtn.Click += new System.EventHandler(this.applyBtn_Click);
+            // 
+            // GUI
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.applyBtn);
+            this.Name = "GUI";
+            this.Text = "NitroGuy\'s Oscillator/Randomizer";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button applyBtn;
     }
 }
 
