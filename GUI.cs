@@ -10,11 +10,11 @@ namespace Vegas_Oscillator_Randomizer
         public static GUI MainGUI;
         public static Vegas Vegas;
 
+        // TODO switch between "one cycle every" and "new value every" in frequency labels based on currently open tab
+
         public GUI()
         {
             InitializeComponent();
-
-            // new SettingControl(horizontalOffsetSlider, horizontalOffsetTextBox, 0.001, 0, "Horizontal Offset");
         }
 
         private void applyBtn_Click(object sender, EventArgs e)
@@ -22,24 +22,5 @@ namespace Vegas_Oscillator_Randomizer
             // Apply();
             Close();
         }
-
-        /*
-        private void horizontalOffsetSlider_Scroll(object sender, EventArgs e)
-        {
-            if (SliderControl.SettingControls.ContainsKey("Horizontal Offset"))
-            {
-                SliderControl.SettingControls["Horizontal Offset"].UpdateFromSlider();
-            }
-        }
-
-        private void horizontalOffsetTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                SliderControl.SettingControls["Horizontal Offset"].UpdateFromTextBox();
-                e.Handled = true;
-            }
-        }
-        */
     }
 }
