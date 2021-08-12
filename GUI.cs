@@ -16,6 +16,9 @@ namespace Vegas_Oscillator_Randomizer
         {
             InitializeComponent();
 
+            // These list items correspond to integers 1-6 from enum OFXInterpolationType
+            interpolationDropdown.DataSource = new string[6] { "Linear", "Fast", "Slow", "Smooth", "Sharp", "Hold"};
+
             FrequencyControl.wavelengthFramesBox = wavelengthFramesBox;
             FrequencyControl.wavelengthSecondsBox = wavelengthSecondsBox;
             FrequencyControl.hzBox = hzBox;
@@ -24,20 +27,47 @@ namespace Vegas_Oscillator_Randomizer
 
             Clip.effectDropdown = effectDropdown;
             Clip.parameterDropdown = parameterDropdown;
+            Clip.interpolationDropdown = interpolationDropdown;
             // TODO depending on the type of the parameter chosen, enable/disable the radio buttons
         }
 
         public void Open ()
         {
-            effectDropdown.DataSource = Clip.GetEffectNames();
-            parameterDropdown.DataSource = Clip.GetParameterNames();
+            int numSelected = 0;
+            foreach (Track track in GUI.Vegas.Project.Tracks)
+            {
+                foreach (TrackEvent trackEvent in track.Events)
+                {
+                    if (trackEvent.Selected == trackEvent.IsVideo())
+                    {
+                        Clip.videoEvent = (VideoEvent)trackEvent;
+                        numSelected++;
+                    }
+                }
+            }
 
-            ShowDialog();
+            if (numSelected != 1)
+            {
+                MessageBox.Show("Please select 1 video clip to apply the oscillation/randomization.");
+            }
+            else if (Clip.useableEffects.Count == 0) // do i need to split this into two if-elses?
+            {
+                MessageBox.Show("The selected video clip has no useable effects/parameters. If it DOES have effects, they are not OpenFX-based and therefore not useable with this script.");
+            }
+            else
+            {
+                effectDropdown.DataSource = Clip.GetEffectNames();
+                parameterDropdown.DataSource = Clip.GetParameterNames();
+
+                ShowDialog();
+            }
         }
 
         private void applyBtn_Click(object sender, EventArgs e)
         {
             // Apply();
+            Clip.MakeKeyframe(0.0, Timecode.FromFrames(0), false);
+            Clip.MakeKeyframe(180.0, Clip.videoEvent.Length, true);
             Close();
         }
 

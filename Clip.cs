@@ -14,26 +14,27 @@ namespace Vegas_Oscillator_Randomizer
 
         public static ComboBox effectDropdown;
         public static ComboBox parameterDropdown;
+        public static ComboBox interpolationDropdown;
 
-        /* 
-         * TODO support the following parameter types
-         * OFXDoubleParameter
-         * OFXDouble2DParameter
-         * OFXDouble3DParameter
-         * OFXIntegerParameter
-         * OFXInteger2DParameter
-         * OFXInteger3DParameter
-         * OFXRGBAParameter
-         * OFXRGBParameter
-         */
+        public static OFXParameterType[] useableParameterTypes = {
+            OFXParameterType.Double, OFXParameterType.Double2D, OFXParameterType.Double3D,
+            OFXParameterType.Integer, OFXParameterType.Integer2D, OFXParameterType.Integer3D,
+            OFXParameterType.RGB, OFXParameterType.RGBA
+        };
 
-        // TODO USE THE GENERIC OFXParameter<> for animating
-
-        public static Effect activeEffect
+        private static Effect activeEffect
         {
             get
             {
                 return useableEffects[effectDropdown.SelectedIndex];
+            }
+        }
+
+        private static OFXParameter activeParameter
+        {
+            get
+            {
+                return useableParameters[parameterDropdown.SelectedIndex];
             }
         }
 
@@ -46,7 +47,7 @@ namespace Vegas_Oscillator_Randomizer
                 {
                     try  // Sometimes, non-OFX effects will throw an exception when reading IsOFX
                     {
-                        if (effect.IsOFX)
+                        if (effect.IsOFX && getUseableParametersOf(effect).Count > 0)
                         {
                             effects.Add(effect);
                         }
@@ -61,15 +62,28 @@ namespace Vegas_Oscillator_Randomizer
         {
             get
             {
-                List<OFXParameter> parameters = new List<OFXParameter>();
-                foreach (OFXParameter parameter in activeEffect.OFXEffect.Parameters)
+                return getUseableParametersOf(activeEffect);
+            }
+        }
+
+        public static List<OFXParameter> getUseableParametersOf (Effect effect)
+        {
+            List<OFXParameter> parameters = new List<OFXParameter>();
+            foreach (OFXParameter parameter in effect.OFXEffect.Parameters)
+            {
+                if (parameter.CanAnimate && useableParameterTypes.Contains(parameter.ParameterType))
                 {
-                    if (parameter.CanAnimate)
-                    {
-                        parameters.Add(parameter);
-                    }
+                    parameters.Add(parameter);
                 }
-                return parameters;
+            }
+            return parameters;
+        }
+
+        private static OFXInterpolationType interpolationType
+        {
+            get
+            {
+                return (OFXInterpolationType)(interpolationDropdown.SelectedIndex + 1);
             }
         }
 
@@ -91,6 +105,110 @@ namespace Vegas_Oscillator_Randomizer
                 parameterNames.Add(parameter.Name);
             }
             return parameterNames;
+        }
+
+        public static void MakeKeyframe(Object value, Timecode time, bool applyInterpolation)
+        {
+            if (activeParameter.ParameterType == OFXParameterType.Double)
+            {
+                OFXParameter<double, OFXDoubleKeyframe> param = (OFXParameter<double, OFXDoubleKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (double) value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.Double2D)
+            {
+                OFXParameter<OFXDouble2D, OFXDouble2DKeyframe> param = (OFXParameter<OFXDouble2D, OFXDouble2DKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (OFXDouble2D) value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.Double3D)
+            {
+                OFXParameter<OFXDouble3D, OFXDouble3DKeyframe> param = (OFXParameter<OFXDouble3D, OFXDouble3DKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (OFXDouble3D)value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.Integer)
+            {
+                OFXParameter<int, OFXIntegerKeyframe> param = (OFXParameter<int, OFXIntegerKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (int)value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.Integer2D)
+            {
+                OFXParameter<OFXInteger2D, OFXInteger2DKeyframe> param = (OFXParameter<OFXInteger2D, OFXInteger2DKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (OFXInteger2D)value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.Integer3D)
+            {
+                OFXParameter<OFXInteger3D, OFXInteger3DKeyframe> param = (OFXParameter<OFXInteger3D, OFXInteger3DKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (OFXInteger3D)value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.RGB)
+            {
+                OFXParameter<OFXColor, OFXRGBKeyframe> param = (OFXParameter<OFXColor, OFXRGBKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (OFXColor)value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.RGBA)
+            {
+                OFXParameter<OFXColor, OFXRGBAKeyframe> param = (OFXParameter<OFXColor, OFXRGBAKeyframe>)activeParameter;
+                param.SetValueAtTime(time, (OFXColor)value);
+                if (applyInterpolation)
+                {
+                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    {
+                        keyframe.Interpolation = interpolationType;
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("Unsupported OFX Parameter Type");
+            }
         }
     }
 }
