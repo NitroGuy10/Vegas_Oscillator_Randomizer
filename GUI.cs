@@ -15,12 +15,50 @@ namespace Vegas_Oscillator_Randomizer
         public GUI()
         {
             InitializeComponent();
+
+            FrequencyControl.wavelengthFramesBox = wavelengthFramesBox;
+            FrequencyControl.wavelengthSecondsBox = wavelengthSecondsBox;
+            FrequencyControl.hzBox = hzBox;
+            FrequencyControl.bpmBox = bpmBox;
+            FrequencyControl.Update("", "60");
         }
 
         private void applyBtn_Click(object sender, EventArgs e)
         {
             // Apply();
             Close();
+        }
+
+        private void wavelengthFramesBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FrequencyControl.Update("Wavelength in frames", wavelengthFramesBox.Text);
+            }
+        }
+
+        private void wavelengthSecondsBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FrequencyControl.Update("Wavelength in seconds", wavelengthSecondsBox.Text);
+            }
+        }
+
+        private void hzBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FrequencyControl.Update("Hertz", hzBox.Text);
+            }
+        }
+
+        private void bpmBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FrequencyControl.Update("Beats per minute", bpmBox.Text);
+            }
         }
     }
 }

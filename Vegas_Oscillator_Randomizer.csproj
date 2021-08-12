@@ -7,7 +7,7 @@
     <ProjectGuid>{CD9C15EB-EAAB-41AD-ACE6-3F6CFCF4D17C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Vegas_Oscillator_Randomizer</RootNamespace>
-    <AssemblyName>Vegas_Oscillator_Randomizer</AssemblyName>
+    <AssemblyName>OscillatorRandomizer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrequencyControl.cs" />
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
     </Compile>
