@@ -21,6 +21,18 @@ namespace Vegas_Oscillator_Randomizer
             FrequencyControl.hzBox = hzBox;
             FrequencyControl.bpmBox = bpmBox;
             FrequencyControl.Update("", "60");
+
+            Clip.effectDropdown = effectDropdown;
+            Clip.parameterDropdown = parameterDropdown;
+            // TODO depending on the type of the parameter chosen, enable/disable the radio buttons
+        }
+
+        public void Open ()
+        {
+            effectDropdown.DataSource = Clip.GetEffectNames();
+            parameterDropdown.DataSource = Clip.GetParameterNames();
+
+            ShowDialog();
         }
 
         private void applyBtn_Click(object sender, EventArgs e)
@@ -59,6 +71,11 @@ namespace Vegas_Oscillator_Randomizer
             {
                 FrequencyControl.Update("Beats per minute", bpmBox.Text);
             }
+        }
+
+        private void effectDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            parameterDropdown.DataSource = Clip.GetParameterNames();
         }
     }
 }

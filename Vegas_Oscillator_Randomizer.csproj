@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clip.cs" />
     <Compile Include="FrequencyControl.cs" />
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>

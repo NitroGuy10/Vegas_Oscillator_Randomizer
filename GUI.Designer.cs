@@ -30,8 +30,8 @@ namespace Vegas_Oscillator_Randomizer
         private void InitializeComponent()
         {
             this.applyBtn = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.effectDropdown = new System.Windows.Forms.ComboBox();
+            this.parameterDropdown = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -67,6 +67,9 @@ namespace Vegas_Oscillator_Randomizer
             this.label6 = new System.Windows.Forms.Label();
             this.wavelengthFramesBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -84,21 +87,24 @@ namespace Vegas_Oscillator_Randomizer
             this.applyBtn.UseVisualStyleBackColor = true;
             this.applyBtn.Click += new System.EventHandler(this.applyBtn_Click);
             // 
-            // comboBox1
+            // effectDropdown
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(193, 21);
-            this.comboBox1.TabIndex = 1;
+            this.effectDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.effectDropdown.FormattingEnabled = true;
+            this.effectDropdown.Location = new System.Drawing.Point(12, 34);
+            this.effectDropdown.Name = "effectDropdown";
+            this.effectDropdown.Size = new System.Drawing.Size(193, 21);
+            this.effectDropdown.TabIndex = 1;
+            this.effectDropdown.SelectedIndexChanged += new System.EventHandler(this.effectDropdown_SelectedIndexChanged);
             // 
-            // comboBox2
+            // parameterDropdown
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(12, 97);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(193, 21);
-            this.comboBox2.TabIndex = 2;
+            this.parameterDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.parameterDropdown.FormattingEnabled = true;
+            this.parameterDropdown.Location = new System.Drawing.Point(12, 97);
+            this.parameterDropdown.Name = "parameterDropdown";
+            this.parameterDropdown.Size = new System.Drawing.Size(193, 21);
+            this.parameterDropdown.TabIndex = 2;
             // 
             // label1
             // 
@@ -170,6 +176,7 @@ namespace Vegas_Oscillator_Randomizer
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(97, 13);
             this.comboBox3.Name = "comboBox3";
@@ -260,6 +267,7 @@ namespace Vegas_Oscillator_Randomizer
             // 
             // comboBox4
             // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(36, 14);
             this.comboBox4.Name = "comboBox4";
@@ -428,17 +436,55 @@ namespace Vegas_Oscillator_Randomizer
             this.label5.TabIndex = 0;
             this.label5.Text = "One cycle every";
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(12, 133);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(32, 17);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "X";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(50, 133);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(32, 17);
+            this.radioButton2.TabIndex = 8;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Y";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Enabled = false;
+            this.radioButton3.Location = new System.Drawing.Point(88, 133);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(32, 17);
+            this.radioButton3.TabIndex = 9;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Z";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 316);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.parameterDropdown);
+            this.Controls.Add(this.effectDropdown);
             this.Controls.Add(this.applyBtn);
             this.Name = "GUI";
             this.Text = "NitroGuy\'s Oscillator/Randomizer";
@@ -459,8 +505,8 @@ namespace Vegas_Oscillator_Randomizer
         #endregion
 
         private System.Windows.Forms.Button applyBtn;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox effectDropdown;
+        private System.Windows.Forms.ComboBox parameterDropdown;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl1;
@@ -496,6 +542,9 @@ namespace Vegas_Oscillator_Randomizer
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox wavelengthFramesBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }
 

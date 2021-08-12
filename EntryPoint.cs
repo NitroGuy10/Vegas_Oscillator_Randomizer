@@ -17,32 +17,26 @@ namespace Vegas_Oscillator_Randomizer
                 GUI.MainGUI = new GUI();
             }
 
-            if (GUI.Vegas == null)
+            int numSelected = 0;
+            foreach (Track track in GUI.Vegas.Project.Tracks)
             {
-                GUI.MainGUI.ShowDialog();
+                foreach (TrackEvent trackEvent in track.Events)
+                {
+                    if (trackEvent.Selected == trackEvent.IsVideo())
+                    {
+                        Clip.videoEvent = (VideoEvent) trackEvent;
+                        numSelected++;
+                    }
+                }
+            }
+
+            if (numSelected == 1)
+            {
+                GUI.MainGUI.Open();
             }
             else
             {
-                int numSelected = 0;
-                foreach (Track track in GUI.Vegas.Project.Tracks)
-                {
-                    foreach (TrackEvent trackEvent in track.Events)
-                    {
-                        if (trackEvent.Selected)
-                        {
-                            numSelected++;
-                        }
-                    }
-                }
-
-                if (numSelected == 1)
-                {
-                    GUI.MainGUI.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Please select 1 clip to apply the oscillation/randomization");
-                }
+                MessageBox.Show("Please select 1 video clip to apply the oscillation/randomization");
             }
         }
         public void FromVegas(Vegas vegas)
