@@ -70,6 +70,8 @@ namespace Vegas_Oscillator_Randomizer
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.splineDropdown = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -79,9 +81,9 @@ namespace Vegas_Oscillator_Randomizer
             // 
             // applyBtn
             // 
-            this.applyBtn.Location = new System.Drawing.Point(12, 242);
+            this.applyBtn.Location = new System.Drawing.Point(12, 267);
             this.applyBtn.Name = "applyBtn";
-            this.applyBtn.Size = new System.Drawing.Size(193, 62);
+            this.applyBtn.Size = new System.Drawing.Size(192, 37);
             this.applyBtn.TabIndex = 0;
             this.applyBtn.Text = "Apply";
             this.applyBtn.UseVisualStyleBackColor = true;
@@ -471,11 +473,31 @@ namespace Vegas_Oscillator_Randomizer
             this.radioButton3.Text = "Z";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
+            // splineDropdown
+            // 
+            this.splineDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.splineDropdown.FormattingEnabled = true;
+            this.splineDropdown.Location = new System.Drawing.Point(11, 206);
+            this.splineDropdown.Name = "splineDropdown";
+            this.splineDropdown.Size = new System.Drawing.Size(193, 21);
+            this.splineDropdown.TabIndex = 10;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 182);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(36, 13);
+            this.label14.TabIndex = 11;
+            this.label14.Text = "Spline";
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 316);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.splineDropdown);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -545,6 +567,8 @@ namespace Vegas_Oscillator_Randomizer
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.ComboBox splineDropdown;
+        private System.Windows.Forms.Label label14;
     }
 }
 
