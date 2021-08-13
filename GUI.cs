@@ -114,5 +114,24 @@ namespace Vegas_Oscillator_Randomizer
         {
             Clip.SetUpRadioButtons();
         }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedIndex == 0)
+            {
+                wavelengthLabel1.Text = "One cycle every";
+                wavelengthLabel2.Text = "One cycle every";
+            }
+            else if (tabControl.SelectedIndex == 1)
+            {
+                wavelengthLabel1.Text = "New value every";
+                wavelengthLabel2.Text = "New value every";
+            }
+            else if (tabControl.SelectedIndex == 2)
+            {
+                wavelengthLabel1.Text = "Keyframe every";
+                wavelengthLabel2.Text = "Keyframe every";
+            }
+        }
     }
 }
