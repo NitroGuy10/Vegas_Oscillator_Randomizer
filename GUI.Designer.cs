@@ -67,11 +67,12 @@ namespace Vegas_Oscillator_Randomizer
             this.label6 = new System.Windows.Forms.Label();
             this.wavelengthFramesBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.firstRadiobtn = new System.Windows.Forms.RadioButton();
+            this.secondRadiobtn = new System.Windows.Forms.RadioButton();
+            this.thirdRadiobtn = new System.Windows.Forms.RadioButton();
             this.interpolationDropdown = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.fourthRadiobtn = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -107,6 +108,7 @@ namespace Vegas_Oscillator_Randomizer
             this.parameterDropdown.Name = "parameterDropdown";
             this.parameterDropdown.Size = new System.Drawing.Size(193, 21);
             this.parameterDropdown.TabIndex = 2;
+            this.parameterDropdown.SelectedIndexChanged += new System.EventHandler(this.parameterDropdown_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -438,40 +440,40 @@ namespace Vegas_Oscillator_Randomizer
             this.label5.TabIndex = 0;
             this.label5.Text = "One cycle every";
             // 
-            // radioButton1
+            // firstRadiobtn
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 133);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(32, 17);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "X";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.firstRadiobtn.AutoSize = true;
+            this.firstRadiobtn.Checked = true;
+            this.firstRadiobtn.Location = new System.Drawing.Point(12, 133);
+            this.firstRadiobtn.Name = "firstRadiobtn";
+            this.firstRadiobtn.Size = new System.Drawing.Size(32, 17);
+            this.firstRadiobtn.TabIndex = 7;
+            this.firstRadiobtn.TabStop = true;
+            this.firstRadiobtn.Text = "X";
+            this.firstRadiobtn.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // secondRadiobtn
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(50, 133);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(32, 17);
-            this.radioButton2.TabIndex = 8;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Y";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.secondRadiobtn.AutoSize = true;
+            this.secondRadiobtn.Location = new System.Drawing.Point(50, 133);
+            this.secondRadiobtn.Name = "secondRadiobtn";
+            this.secondRadiobtn.Size = new System.Drawing.Size(32, 17);
+            this.secondRadiobtn.TabIndex = 8;
+            this.secondRadiobtn.TabStop = true;
+            this.secondRadiobtn.Text = "Y";
+            this.secondRadiobtn.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // thirdRadiobtn
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Enabled = false;
-            this.radioButton3.Location = new System.Drawing.Point(88, 133);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(32, 17);
-            this.radioButton3.TabIndex = 9;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Z";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.thirdRadiobtn.AutoSize = true;
+            this.thirdRadiobtn.Enabled = false;
+            this.thirdRadiobtn.Location = new System.Drawing.Point(88, 133);
+            this.thirdRadiobtn.Name = "thirdRadiobtn";
+            this.thirdRadiobtn.Size = new System.Drawing.Size(32, 17);
+            this.thirdRadiobtn.TabIndex = 9;
+            this.thirdRadiobtn.TabStop = true;
+            this.thirdRadiobtn.Text = "Z";
+            this.thirdRadiobtn.UseVisualStyleBackColor = true;
             // 
             // interpolationDropdown
             // 
@@ -491,16 +493,29 @@ namespace Vegas_Oscillator_Randomizer
             this.label14.TabIndex = 11;
             this.label14.Text = "Interpolation";
             // 
+            // fourthRadiobtn
+            // 
+            this.fourthRadiobtn.AutoSize = true;
+            this.fourthRadiobtn.Enabled = false;
+            this.fourthRadiobtn.Location = new System.Drawing.Point(126, 133);
+            this.fourthRadiobtn.Name = "fourthRadiobtn";
+            this.fourthRadiobtn.Size = new System.Drawing.Size(32, 17);
+            this.fourthRadiobtn.TabIndex = 12;
+            this.fourthRadiobtn.TabStop = true;
+            this.fourthRadiobtn.Text = "A";
+            this.fourthRadiobtn.UseVisualStyleBackColor = true;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 316);
+            this.Controls.Add(this.fourthRadiobtn);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.interpolationDropdown);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.thirdRadiobtn);
+            this.Controls.Add(this.secondRadiobtn);
+            this.Controls.Add(this.firstRadiobtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label2);
@@ -564,11 +579,12 @@ namespace Vegas_Oscillator_Randomizer
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox wavelengthFramesBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton firstRadiobtn;
+        private System.Windows.Forms.RadioButton secondRadiobtn;
+        private System.Windows.Forms.RadioButton thirdRadiobtn;
         private System.Windows.Forms.ComboBox interpolationDropdown;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RadioButton fourthRadiobtn;
     }
 }
 

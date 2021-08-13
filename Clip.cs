@@ -15,6 +15,7 @@ namespace Vegas_Oscillator_Randomizer
         public static ComboBox effectDropdown;
         public static ComboBox parameterDropdown;
         public static ComboBox interpolationDropdown;
+        public static RadioButton[] radioButtons;
 
         public static OFXParameterType[] useableParameterTypes = {
             OFXParameterType.Double, OFXParameterType.Double2D, OFXParameterType.Double3D,
@@ -209,6 +210,56 @@ namespace Vegas_Oscillator_Randomizer
             {
                 throw new Exception("Unsupported OFX Parameter Type");
             }
+        }
+
+        public static void SetUpRadioButtons ()
+        {
+            if (activeParameter.ParameterType == OFXParameterType.Double || activeParameter.ParameterType == OFXParameterType.Integer)
+            {
+                setUpRadioButton(radioButtons[0], false);
+                setUpRadioButton(radioButtons[1], false);
+                setUpRadioButton(radioButtons[2], false);
+                setUpRadioButton(radioButtons[3], false);
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.Double2D || activeParameter.ParameterType == OFXParameterType.Integer2D)
+            {
+                setUpRadioButton(radioButtons[0], true, "X");
+                setUpRadioButton(radioButtons[1], true, "Y");
+                setUpRadioButton(radioButtons[2], false);
+                setUpRadioButton(radioButtons[3], false);
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.Double3D || activeParameter.ParameterType == OFXParameterType.Integer3D)
+            {
+                setUpRadioButton(radioButtons[0], true, "X");
+                setUpRadioButton(radioButtons[1], true, "Y");
+                setUpRadioButton(radioButtons[2], true, "Z");
+                setUpRadioButton(radioButtons[3], false);
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.RGB)
+            {
+                setUpRadioButton(radioButtons[0], true, "R");
+                setUpRadioButton(radioButtons[1], true, "G");
+                setUpRadioButton(radioButtons[2], true, "B");
+                setUpRadioButton(radioButtons[3], false);
+            }
+            else if (activeParameter.ParameterType == OFXParameterType.RGBA)
+            {
+                setUpRadioButton(radioButtons[0], true, "R");
+                setUpRadioButton(radioButtons[1], true, "G");
+                setUpRadioButton(radioButtons[2], true, "B");
+                setUpRadioButton(radioButtons[3], true, "A");
+            }
+            else
+            {
+                throw new Exception("Unsupported OFX Parameter Type");
+            }
+        }
+
+        private static void setUpRadioButton (RadioButton radioButton, bool enabled, string text = "")
+        {
+            radioButton.Enabled = enabled;
+            radioButton.Visible = enabled;
+            radioButton.Text = text;
         }
     }
 }

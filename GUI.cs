@@ -17,7 +17,7 @@ namespace Vegas_Oscillator_Randomizer
             InitializeComponent();
 
             // These list items correspond to integers 1-6 from enum OFXInterpolationType
-            interpolationDropdown.DataSource = new string[6] { "Linear", "Fast", "Slow", "Smooth", "Sharp", "Hold"};
+            interpolationDropdown.DataSource = new string[6] { "Linear", "Fast", "Slow", "Smooth", "Sharp", "Hold" };
 
             FrequencyControl.wavelengthFramesBox = wavelengthFramesBox;
             FrequencyControl.wavelengthSecondsBox = wavelengthSecondsBox;
@@ -28,10 +28,10 @@ namespace Vegas_Oscillator_Randomizer
             Clip.effectDropdown = effectDropdown;
             Clip.parameterDropdown = parameterDropdown;
             Clip.interpolationDropdown = interpolationDropdown;
-            // TODO depending on the type of the parameter chosen, enable/disable the radio buttons
+            Clip.radioButtons = new RadioButton[4] { firstRadiobtn, secondRadiobtn, thirdRadiobtn, fourthRadiobtn };
         }
 
-        public void Open ()
+        public void Open()
         {
             int numSelected = 0;
             foreach (Track track in GUI.Vegas.Project.Tracks)
@@ -50,7 +50,7 @@ namespace Vegas_Oscillator_Randomizer
             {
                 MessageBox.Show("Please select 1 video clip to apply the oscillation/randomization.");
             }
-            else if (Clip.useableEffects.Count == 0) // do i need to split this into two if-elses?
+            else if (Clip.useableEffects.Count == 0)
             {
                 MessageBox.Show("The selected video clip has no useable effects/parameters. If it DOES have effects, they are not OpenFX-based and therefore not useable with this script.");
             }
@@ -58,6 +58,8 @@ namespace Vegas_Oscillator_Randomizer
             {
                 effectDropdown.DataSource = Clip.GetEffectNames();
                 parameterDropdown.DataSource = Clip.GetParameterNames();
+
+                Clip.SetUpRadioButtons();
 
                 ShowDialog();
             }
@@ -106,6 +108,11 @@ namespace Vegas_Oscillator_Randomizer
         private void effectDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
             parameterDropdown.DataSource = Clip.GetParameterNames();
+        }
+
+        private void parameterDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Clip.SetUpRadioButtons();
         }
     }
 }
