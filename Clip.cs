@@ -113,7 +113,9 @@ namespace Vegas_Oscillator_Randomizer
             if (activeParameter.ParameterType == OFXParameterType.Double)
             {
                 OFXParameter<double, OFXDoubleKeyframe> param = (OFXParameter<double, OFXDoubleKeyframe>)activeParameter;
+                
                 param.SetValueAtTime(time, (double) value);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -125,7 +127,20 @@ namespace Vegas_Oscillator_Randomizer
             else if (activeParameter.ParameterType == OFXParameterType.Double2D)
             {
                 OFXParameter<OFXDouble2D, OFXDouble2DKeyframe> param = (OFXParameter<OFXDouble2D, OFXDouble2DKeyframe>)activeParameter;
-                param.SetValueAtTime(time, (OFXDouble2D) value);
+
+                OFXDouble2D newValue = new OFXDouble2D();
+                if (radioButtons[0].Checked)
+                {
+                    newValue.X = (double)value;
+                    newValue.Y = param.GetValueAtTime(time).Y;
+                }
+                else
+                {
+                    newValue.X = param.GetValueAtTime(time).X;
+                    newValue.Y = (double)value;
+                }
+                param.SetValueAtTime(time, newValue);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -137,7 +152,28 @@ namespace Vegas_Oscillator_Randomizer
             else if (activeParameter.ParameterType == OFXParameterType.Double3D)
             {
                 OFXParameter<OFXDouble3D, OFXDouble3DKeyframe> param = (OFXParameter<OFXDouble3D, OFXDouble3DKeyframe>)activeParameter;
-                param.SetValueAtTime(time, (OFXDouble3D)value);
+
+                OFXDouble3D newValue = new OFXDouble3D();
+                if (radioButtons[0].Checked)
+                {
+                    newValue.X = (double)value;
+                    newValue.Y = param.GetValueAtTime(time).Y;
+                    newValue.Z = param.GetValueAtTime(time).Z;
+                }
+                else if (radioButtons[1].Checked)
+                {
+                    newValue.X = param.GetValueAtTime(time).X;
+                    newValue.Y = (double)value;
+                    newValue.Z = param.GetValueAtTime(time).Z;
+                }
+                else
+                {
+                    newValue.X = param.GetValueAtTime(time).X;
+                    newValue.Y = param.GetValueAtTime(time).Y;
+                    newValue.Z = (double)value;
+                }
+                param.SetValueAtTime(time, newValue);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -149,7 +185,9 @@ namespace Vegas_Oscillator_Randomizer
             else if (activeParameter.ParameterType == OFXParameterType.Integer)
             {
                 OFXParameter<int, OFXIntegerKeyframe> param = (OFXParameter<int, OFXIntegerKeyframe>)activeParameter;
+
                 param.SetValueAtTime(time, (int)value);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -161,7 +199,20 @@ namespace Vegas_Oscillator_Randomizer
             else if (activeParameter.ParameterType == OFXParameterType.Integer2D)
             {
                 OFXParameter<OFXInteger2D, OFXInteger2DKeyframe> param = (OFXParameter<OFXInteger2D, OFXInteger2DKeyframe>)activeParameter;
-                param.SetValueAtTime(time, (OFXInteger2D)value);
+
+                OFXInteger2D newValue = new OFXInteger2D();
+                if (radioButtons[0].Checked)
+                {
+                    newValue.X = (int)value;
+                    newValue.Y = param.GetValueAtTime(time).Y;
+                }
+                else
+                {
+                    newValue.X = param.GetValueAtTime(time).X;
+                    newValue.Y = (int)value;
+                }
+                param.SetValueAtTime(time, newValue);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -173,7 +224,28 @@ namespace Vegas_Oscillator_Randomizer
             else if (activeParameter.ParameterType == OFXParameterType.Integer3D)
             {
                 OFXParameter<OFXInteger3D, OFXInteger3DKeyframe> param = (OFXParameter<OFXInteger3D, OFXInteger3DKeyframe>)activeParameter;
-                param.SetValueAtTime(time, (OFXInteger3D)value);
+
+                OFXInteger3D newValue = new OFXInteger3D();
+                if (radioButtons[0].Checked)
+                {
+                    newValue.X = (int)value;
+                    newValue.Y = param.GetValueAtTime(time).Y;
+                    newValue.Z = param.GetValueAtTime(time).Z;
+                }
+                else if (radioButtons[1].Checked)
+                {
+                    newValue.X = param.GetValueAtTime(time).X;
+                    newValue.Y = (int)value;
+                    newValue.Z = param.GetValueAtTime(time).Z;
+                }
+                else
+                {
+                    newValue.X = param.GetValueAtTime(time).X;
+                    newValue.Y = param.GetValueAtTime(time).Y;
+                    newValue.Z = (int)value;
+                }
+                param.SetValueAtTime(time, newValue);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -185,7 +257,31 @@ namespace Vegas_Oscillator_Randomizer
             else if (activeParameter.ParameterType == OFXParameterType.RGB)
             {
                 OFXParameter<OFXColor, OFXRGBKeyframe> param = (OFXParameter<OFXColor, OFXRGBKeyframe>)activeParameter;
-                param.SetValueAtTime(time, (OFXColor)value);
+
+                OFXColor newValue = new OFXColor();
+                if (radioButtons[0].Checked)
+                {
+                    newValue.R = (double)value;
+                    newValue.G = param.GetValueAtTime(time).G;
+                    newValue.B = param.GetValueAtTime(time).B;
+                    newValue.A = param.GetValueAtTime(time).A;
+                }
+                else if (radioButtons[1].Checked)
+                {
+                    newValue.R = param.GetValueAtTime(time).R;
+                    newValue.G = (double)value;
+                    newValue.B = param.GetValueAtTime(time).B;
+                    newValue.A = param.GetValueAtTime(time).A;
+                }
+                else
+                {
+                    newValue.R = param.GetValueAtTime(time).R;
+                    newValue.G = param.GetValueAtTime(time).G;
+                    newValue.B = (double)value;
+                    newValue.A = param.GetValueAtTime(time).A;
+                }
+                param.SetValueAtTime(time, newValue);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -197,7 +293,38 @@ namespace Vegas_Oscillator_Randomizer
             else if (activeParameter.ParameterType == OFXParameterType.RGBA)
             {
                 OFXParameter<OFXColor, OFXRGBAKeyframe> param = (OFXParameter<OFXColor, OFXRGBAKeyframe>)activeParameter;
-                param.SetValueAtTime(time, (OFXColor)value);
+
+                OFXColor newValue = new OFXColor();
+                if (radioButtons[0].Checked)
+                {
+                    newValue.R = (double)value;
+                    newValue.G = param.GetValueAtTime(time).G;
+                    newValue.B = param.GetValueAtTime(time).B;
+                    newValue.A = param.GetValueAtTime(time).A;
+                }
+                else if (radioButtons[1].Checked)
+                {
+                    newValue.R = param.GetValueAtTime(time).R;
+                    newValue.G = (double)value;
+                    newValue.B = param.GetValueAtTime(time).B;
+                    newValue.A = param.GetValueAtTime(time).A;
+                }
+                else if (radioButtons[2].Checked)
+                {
+                    newValue.R = param.GetValueAtTime(time).R;
+                    newValue.G = param.GetValueAtTime(time).G;
+                    newValue.B = (double)value;
+                    newValue.A = param.GetValueAtTime(time).A;
+                }
+                else
+                {
+                    newValue.R = param.GetValueAtTime(time).R;
+                    newValue.G = param.GetValueAtTime(time).G;
+                    newValue.B = param.GetValueAtTime(time).B;
+                    newValue.A = (double)value;
+                }
+                param.SetValueAtTime(time, newValue);
+
                 if (applyInterpolation)
                 {
                     foreach (OFXKeyframe keyframe in param.Keyframes)
@@ -216,38 +343,38 @@ namespace Vegas_Oscillator_Randomizer
         {
             if (activeParameter.ParameterType == OFXParameterType.Double || activeParameter.ParameterType == OFXParameterType.Integer)
             {
-                setUpRadioButton(radioButtons[0], false);
-                setUpRadioButton(radioButtons[1], false);
-                setUpRadioButton(radioButtons[2], false);
-                setUpRadioButton(radioButtons[3], false);
+                setUpRadioButton(0, false);
+                setUpRadioButton(1, false);
+                setUpRadioButton(2, false);
+                setUpRadioButton(3, false);
             }
             else if (activeParameter.ParameterType == OFXParameterType.Double2D || activeParameter.ParameterType == OFXParameterType.Integer2D)
             {
-                setUpRadioButton(radioButtons[0], true, "X");
-                setUpRadioButton(radioButtons[1], true, "Y");
-                setUpRadioButton(radioButtons[2], false);
-                setUpRadioButton(radioButtons[3], false);
+                setUpRadioButton(0, true, "X");
+                setUpRadioButton(1, true, "Y");
+                setUpRadioButton(2, false);
+                setUpRadioButton(3, false);
             }
             else if (activeParameter.ParameterType == OFXParameterType.Double3D || activeParameter.ParameterType == OFXParameterType.Integer3D)
             {
-                setUpRadioButton(radioButtons[0], true, "X");
-                setUpRadioButton(radioButtons[1], true, "Y");
-                setUpRadioButton(radioButtons[2], true, "Z");
-                setUpRadioButton(radioButtons[3], false);
+                setUpRadioButton(0, true, "X");
+                setUpRadioButton(1, true, "Y");
+                setUpRadioButton(2, true, "Z");
+                setUpRadioButton(3, false);
             }
             else if (activeParameter.ParameterType == OFXParameterType.RGB)
             {
-                setUpRadioButton(radioButtons[0], true, "R");
-                setUpRadioButton(radioButtons[1], true, "G");
-                setUpRadioButton(radioButtons[2], true, "B");
-                setUpRadioButton(radioButtons[3], false);
+                setUpRadioButton(0, true, "R");
+                setUpRadioButton(1, true, "G");
+                setUpRadioButton(2, true, "B");
+                setUpRadioButton(3, false);
             }
             else if (activeParameter.ParameterType == OFXParameterType.RGBA)
             {
-                setUpRadioButton(radioButtons[0], true, "R");
-                setUpRadioButton(radioButtons[1], true, "G");
-                setUpRadioButton(radioButtons[2], true, "B");
-                setUpRadioButton(radioButtons[3], true, "A");
+                setUpRadioButton(0, true, "R");
+                setUpRadioButton(1, true, "G");
+                setUpRadioButton(2, true, "B");
+                setUpRadioButton(3, true, "A");
             }
             else
             {
@@ -255,11 +382,18 @@ namespace Vegas_Oscillator_Randomizer
             }
         }
 
-        private static void setUpRadioButton (RadioButton radioButton, bool enabled, string text = "")
+        private static void setUpRadioButton (int radioButtonIndex, bool enabled, string text = "")
         {
+            RadioButton radioButton = radioButtons[radioButtonIndex];
+
             radioButton.Enabled = enabled;
             radioButton.Visible = enabled;
             radioButton.Text = text;
+
+            if (!enabled && radioButton.Checked)
+            {
+                radioButtons[0].Checked = true;
+            }
         }
     }
 }
