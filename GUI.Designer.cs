@@ -43,11 +43,11 @@ namespace Vegas_Oscillator_Randomizer
             this.label3 = new System.Windows.Forms.Label();
             this.oscWaveformDropdown = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.randMaxBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.randMinBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.randSeedBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
@@ -215,11 +215,11 @@ namespace Vegas_Oscillator_Randomizer
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox8);
+            this.tabPage2.Controls.Add(this.randMaxBox);
             this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.textBox7);
+            this.tabPage2.Controls.Add(this.randMinBox);
             this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.textBox6);
+            this.tabPage2.Controls.Add(this.randSeedBox);
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -229,44 +229,44 @@ namespace Vegas_Oscillator_Randomizer
             this.tabPage2.Text = "Randomizer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox8
+            // randMaxBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(97, 51);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 5;
+            this.randMaxBox.Location = new System.Drawing.Point(97, 78);
+            this.randMaxBox.Name = "randMaxBox";
+            this.randMaxBox.Size = new System.Drawing.Size(100, 20);
+            this.randMaxBox.TabIndex = 5;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(13, 54);
+            this.label13.Location = new System.Drawing.Point(13, 81);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(78, 13);
+            this.label13.Size = new System.Drawing.Size(81, 13);
             this.label13.TabIndex = 4;
-            this.label13.Text = "Max (Inclusive)";
+            this.label13.Text = "Max (Exclusive)";
             // 
-            // textBox7
+            // randMinBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(97, 77);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 3;
+            this.randMinBox.Location = new System.Drawing.Point(97, 52);
+            this.randMinBox.Name = "randMinBox";
+            this.randMinBox.Size = new System.Drawing.Size(100, 20);
+            this.randMinBox.TabIndex = 3;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 80);
+            this.label12.Location = new System.Drawing.Point(16, 55);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(75, 13);
             this.label12.TabIndex = 2;
             this.label12.Text = "Min (Inclusive)";
             // 
-            // textBox6
+            // randSeedBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(97, 15);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 1;
+            this.randSeedBox.Location = new System.Drawing.Point(97, 15);
+            this.randSeedBox.Name = "randSeedBox";
+            this.randSeedBox.Size = new System.Drawing.Size(100, 20);
+            this.randSeedBox.TabIndex = 1;
             // 
             // label11
             // 
@@ -343,7 +343,7 @@ namespace Vegas_Oscillator_Randomizer
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(97, 83);
+            this.textBox17.Location = new System.Drawing.Point(97, 102);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(100, 20);
             this.textBox17.TabIndex = 12;
@@ -351,15 +351,15 @@ namespace Vegas_Oscillator_Randomizer
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(13, 86);
+            this.label26.Location = new System.Drawing.Point(13, 105);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(78, 13);
+            this.label26.Size = new System.Drawing.Size(81, 13);
             this.label26.TabIndex = 11;
-            this.label26.Text = "Max (Inclusive)";
+            this.label26.Text = "Max (Exclusive)";
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(97, 109);
+            this.textBox18.Location = new System.Drawing.Point(97, 76);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(100, 20);
             this.textBox18.TabIndex = 10;
@@ -367,7 +367,7 @@ namespace Vegas_Oscillator_Randomizer
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(16, 112);
+            this.label27.Location = new System.Drawing.Point(16, 79);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(75, 13);
             this.label27.TabIndex = 9;
@@ -618,11 +618,11 @@ namespace Vegas_Oscillator_Randomizer
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox oscWaveformDropdown;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox randMaxBox;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox randMinBox;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox randSeedBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label29;

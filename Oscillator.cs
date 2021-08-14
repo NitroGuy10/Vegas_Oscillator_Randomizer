@@ -1,28 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ScriptPortal.Vegas;
 
 namespace Vegas_Oscillator_Randomizer
 {
-    public abstract class Generator
-    {
-        public void Generate()
-        {
-            int iteration = 0;
-            while (GetTime(iteration) <= Clip.videoEvent.Length)
-            {
-                Clip.MakeKeyframe(GetValue(iteration), GetTime(iteration), true, GetInterpolation(iteration));
-                iteration++;
-            }
-        }
-        public abstract double GetValue(int iteration);
-        public abstract int GetInterpolation(int iteration);
-        public abstract Timecode GetTime(int iteration);
-    }
-
     public enum Waveform
     {
         Sine,
@@ -55,11 +35,6 @@ namespace Vegas_Oscillator_Randomizer
             else if (waveform == Waveform.Square)
             {
                 FrameDistance = Math.Max(FrequencyControl.wavelengthFrames / 2, 1);
-            }
-            else  // if sawtooth
-            {
-                //FrameDistance = 1;
-                //FrameDistance = Math.Max(FrequencyControl.wavelengthFrames - 1, 1);
             }
         }
 

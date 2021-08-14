@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ScriptPortal.Vegas;
 using System.Windows.Forms;
 
@@ -108,13 +106,13 @@ namespace Vegas_Oscillator_Randomizer
             return parameterNames;
         }
 
-        public static void MakeKeyframe(Object value, Timecode time, bool interpolate, int forceInterpolationType = -1)
+        public static void MakeKeyframe(double value, Timecode time, bool interpolate, int forceInterpolationType = -1)
         {
             if (activeParameter.ParameterType == OFXParameterType.Double)
             {
                 OFXParameter<double, OFXDoubleKeyframe> param = (OFXParameter<double, OFXDoubleKeyframe>)activeParameter;
 
-                param.SetValueAtTime(time, (double)value);
+                param.SetValueAtTime(time, value);
 
                 if (interpolate)
                 {
@@ -135,13 +133,13 @@ namespace Vegas_Oscillator_Randomizer
                 OFXDouble2D newValue = new OFXDouble2D();
                 if (radioButtons[0].Checked)
                 {
-                    newValue.X = (double)value;
+                    newValue.X = value;
                     newValue.Y = param.GetValueAtTime(time).Y;
                 }
                 else
                 {
                     newValue.X = param.GetValueAtTime(time).X;
-                    newValue.Y = (double)value;
+                    newValue.Y = value;
                 }
                 param.SetValueAtTime(time, newValue);
 
@@ -164,21 +162,21 @@ namespace Vegas_Oscillator_Randomizer
                 OFXDouble3D newValue = new OFXDouble3D();
                 if (radioButtons[0].Checked)
                 {
-                    newValue.X = (double)value;
+                    newValue.X = value;
                     newValue.Y = param.GetValueAtTime(time).Y;
                     newValue.Z = param.GetValueAtTime(time).Z;
                 }
                 else if (radioButtons[1].Checked)
                 {
                     newValue.X = param.GetValueAtTime(time).X;
-                    newValue.Y = (double)value;
+                    newValue.Y = value;
                     newValue.Z = param.GetValueAtTime(time).Z;
                 }
                 else
                 {
                     newValue.X = param.GetValueAtTime(time).X;
                     newValue.Y = param.GetValueAtTime(time).Y;
-                    newValue.Z = (double)value;
+                    newValue.Z = value;
                 }
                 param.SetValueAtTime(time, newValue);
 
@@ -198,7 +196,8 @@ namespace Vegas_Oscillator_Randomizer
             {
                 OFXParameter<int, OFXIntegerKeyframe> param = (OFXParameter<int, OFXIntegerKeyframe>)activeParameter;
 
-                param.SetValueAtTime(time, (int)value);
+                int intValue = (int)Math.Round(value);
+                param.SetValueAtTime(time, intValue);
 
                 if (interpolate)
                 {
@@ -216,16 +215,17 @@ namespace Vegas_Oscillator_Randomizer
             {
                 OFXParameter<OFXInteger2D, OFXInteger2DKeyframe> param = (OFXParameter<OFXInteger2D, OFXInteger2DKeyframe>)activeParameter;
 
+                int intValue = (int)Math.Round(value);
                 OFXInteger2D newValue = new OFXInteger2D();
                 if (radioButtons[0].Checked)
                 {
-                    newValue.X = (int)value;
+                    newValue.X = intValue;
                     newValue.Y = param.GetValueAtTime(time).Y;
                 }
                 else
                 {
                     newValue.X = param.GetValueAtTime(time).X;
-                    newValue.Y = (int)value;
+                    newValue.Y = intValue;
                 }
                 param.SetValueAtTime(time, newValue);
 
@@ -245,24 +245,25 @@ namespace Vegas_Oscillator_Randomizer
             {
                 OFXParameter<OFXInteger3D, OFXInteger3DKeyframe> param = (OFXParameter<OFXInteger3D, OFXInteger3DKeyframe>)activeParameter;
 
+                int intValue = (int)Math.Round(value);
                 OFXInteger3D newValue = new OFXInteger3D();
                 if (radioButtons[0].Checked)
                 {
-                    newValue.X = (int)value;
+                    newValue.X = intValue;
                     newValue.Y = param.GetValueAtTime(time).Y;
                     newValue.Z = param.GetValueAtTime(time).Z;
                 }
                 else if (radioButtons[1].Checked)
                 {
                     newValue.X = param.GetValueAtTime(time).X;
-                    newValue.Y = (int)value;
+                    newValue.Y = intValue;
                     newValue.Z = param.GetValueAtTime(time).Z;
                 }
                 else
                 {
                     newValue.X = param.GetValueAtTime(time).X;
                     newValue.Y = param.GetValueAtTime(time).Y;
-                    newValue.Z = (int)value;
+                    newValue.Z = intValue;
                 }
                 param.SetValueAtTime(time, newValue);
 
@@ -285,7 +286,7 @@ namespace Vegas_Oscillator_Randomizer
                 OFXColor newValue = new OFXColor();
                 if (radioButtons[0].Checked)
                 {
-                    newValue.R = (double)value;
+                    newValue.R = value;
                     newValue.G = param.GetValueAtTime(time).G;
                     newValue.B = param.GetValueAtTime(time).B;
                     newValue.A = param.GetValueAtTime(time).A;
@@ -293,7 +294,7 @@ namespace Vegas_Oscillator_Randomizer
                 else if (radioButtons[1].Checked)
                 {
                     newValue.R = param.GetValueAtTime(time).R;
-                    newValue.G = (double)value;
+                    newValue.G = value;
                     newValue.B = param.GetValueAtTime(time).B;
                     newValue.A = param.GetValueAtTime(time).A;
                 }
@@ -301,7 +302,7 @@ namespace Vegas_Oscillator_Randomizer
                 {
                     newValue.R = param.GetValueAtTime(time).R;
                     newValue.G = param.GetValueAtTime(time).G;
-                    newValue.B = (double)value;
+                    newValue.B = value;
                     newValue.A = param.GetValueAtTime(time).A;
                 }
                 param.SetValueAtTime(time, newValue);
@@ -325,7 +326,7 @@ namespace Vegas_Oscillator_Randomizer
                 OFXColor newValue = new OFXColor();
                 if (radioButtons[0].Checked)
                 {
-                    newValue.R = (double)value;
+                    newValue.R = value;
                     newValue.G = param.GetValueAtTime(time).G;
                     newValue.B = param.GetValueAtTime(time).B;
                     newValue.A = param.GetValueAtTime(time).A;
@@ -333,7 +334,7 @@ namespace Vegas_Oscillator_Randomizer
                 else if (radioButtons[1].Checked)
                 {
                     newValue.R = param.GetValueAtTime(time).R;
-                    newValue.G = (double)value;
+                    newValue.G = value;
                     newValue.B = param.GetValueAtTime(time).B;
                     newValue.A = param.GetValueAtTime(time).A;
                 }
@@ -341,7 +342,7 @@ namespace Vegas_Oscillator_Randomizer
                 {
                     newValue.R = param.GetValueAtTime(time).R;
                     newValue.G = param.GetValueAtTime(time).G;
-                    newValue.B = (double)value;
+                    newValue.B = value;
                     newValue.A = param.GetValueAtTime(time).A;
                 }
                 else
@@ -349,7 +350,7 @@ namespace Vegas_Oscillator_Randomizer
                     newValue.R = param.GetValueAtTime(time).R;
                     newValue.G = param.GetValueAtTime(time).G;
                     newValue.B = param.GetValueAtTime(time).B;
-                    newValue.A = (double)value;
+                    newValue.A = value;
                 }
                 param.SetValueAtTime(time, newValue);
 

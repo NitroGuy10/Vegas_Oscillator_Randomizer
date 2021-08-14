@@ -66,7 +66,7 @@ namespace Vegas_Oscillator_Randomizer
             }
         }
 
-        private string VerifyNumberBoxes(TextBox[] textBoxes, string[] names)
+        private bool VerifyDoubleBoxes(TextBox[] textBoxes, string[] names)
         {
             List<string> invalidNumberBoxNames = new List<string>();
             for (int i = 0; i < textBoxes.Length; i++)
@@ -80,7 +80,15 @@ namespace Vegas_Oscillator_Randomizer
                     invalidNumberBoxNames.Add(names[i]);
                 }
             }
-            return string.Join(", ", invalidNumberBoxNames);
+            if (invalidNumberBoxNames.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("The following settings do not have valid numerical values: " + string.Join(", ", invalidNumberBoxNames));
+                return false;
+            }
         }
 
         private void restrictInterpolation()
@@ -106,18 +114,26 @@ namespace Vegas_Oscillator_Randomizer
             Generator generator;
             if (tabControl.SelectedIndex == 0)
             {
-                string invalidNumberBoxNames = VerifyNumberBoxes(new TextBox[2] { oscAmplitudeBox, oscHeightBox }, new string[2] { "Amplitude", "Height" });
-                if (!invalidNumberBoxNames.Equals(""))
+                if (!VerifyDoubleBoxes(new TextBox[2] { oscAmplitudeBox, oscHeightBox }, new string[2] { "Amplitude", "Height" }))
                 {
-                    MessageBox.Show("The following settings do not have valid numerical values: " + invalidNumberBoxNames);
                     return;
                 }
-                generator = new Oscillator((Waveform) oscWaveformDropdown.SelectedIndex, double.Parse(oscAmplitudeBox.Text), double.Parse(oscHeightBox.Text));
+                generator = new Oscillator((Waveform)oscWaveformDropdown.SelectedIndex, double.Parse(oscAmplitudeBox.Text), double.Parse(oscHeightBox.Text));
             }
             else if (tabControl.SelectedIndex == 1)
             {
-                // TODO new Randomizer()
-                generator = new Oscillator(Waveform.Sine, 0, 0);
+                if (!VerifyDoubleBoxes(new TextBox[2] { randMaxBox, randMinBox }, new string[2] { "Maximum", "Minimum" }))
+                {
+                    return;
+                }
+                if (randSeedBox.Text.Equals(""))
+                {
+                    generator = new Randomizer(0, double.Parse(randMinBox.Text), double.Parse(randMaxBox.Text), true);
+                }
+                else
+                {
+                    generator = new Randomizer(randSeedBox.Text.GetHashCode(), double.Parse(randMinBox.Text), double.Parse(randMaxBox.Text));
+                }
             }
             else
             {
