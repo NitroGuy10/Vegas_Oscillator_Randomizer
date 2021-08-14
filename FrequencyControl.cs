@@ -64,6 +64,7 @@ namespace Vegas_Oscillator_Randomizer
                 }
                 catch (Exception) { }
             }
+            wavelengthFrames = Math.Max(wavelengthFrames, 1);
 
             // Update all boxes using the newly found wavelength in frames
             wavelengthFramesBox.Text = wavelengthFrames.ToString();

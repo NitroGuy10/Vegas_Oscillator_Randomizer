@@ -67,7 +67,7 @@ namespace Vegas_Oscillator_Randomizer
             }
         }
 
-        public static List<OFXParameter> getUseableParametersOf (Effect effect)
+        public static List<OFXParameter> getUseableParametersOf(Effect effect)
         {
             List<OFXParameter> parameters = new List<OFXParameter>();
             foreach (OFXParameter parameter in effect.OFXEffect.Parameters)
@@ -108,19 +108,23 @@ namespace Vegas_Oscillator_Randomizer
             return parameterNames;
         }
 
-        public static void MakeKeyframe(Object value, Timecode time, bool applyInterpolation)
+        public static void MakeKeyframe(Object value, Timecode time, bool interpolate, int forceInterpolationType = -1)
         {
             if (activeParameter.ParameterType == OFXParameterType.Double)
             {
                 OFXParameter<double, OFXDoubleKeyframe> param = (OFXParameter<double, OFXDoubleKeyframe>)activeParameter;
-                
-                param.SetValueAtTime(time, (double) value);
 
-                if (applyInterpolation)
+                param.SetValueAtTime(time, (double)value);
+
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType)forceInterpolationType;
                     }
                 }
             }
@@ -141,11 +145,15 @@ namespace Vegas_Oscillator_Randomizer
                 }
                 param.SetValueAtTime(time, newValue);
 
-                if (applyInterpolation)
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType) forceInterpolationType;
                     }
                 }
             }
@@ -174,11 +182,15 @@ namespace Vegas_Oscillator_Randomizer
                 }
                 param.SetValueAtTime(time, newValue);
 
-                if (applyInterpolation)
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType)forceInterpolationType;
                     }
                 }
             }
@@ -188,11 +200,15 @@ namespace Vegas_Oscillator_Randomizer
 
                 param.SetValueAtTime(time, (int)value);
 
-                if (applyInterpolation)
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType)forceInterpolationType;
                     }
                 }
             }
@@ -213,11 +229,15 @@ namespace Vegas_Oscillator_Randomizer
                 }
                 param.SetValueAtTime(time, newValue);
 
-                if (applyInterpolation)
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType)forceInterpolationType;
                     }
                 }
             }
@@ -246,11 +266,15 @@ namespace Vegas_Oscillator_Randomizer
                 }
                 param.SetValueAtTime(time, newValue);
 
-                if (applyInterpolation)
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType)forceInterpolationType;
                     }
                 }
             }
@@ -282,11 +306,15 @@ namespace Vegas_Oscillator_Randomizer
                 }
                 param.SetValueAtTime(time, newValue);
 
-                if (applyInterpolation)
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType)forceInterpolationType;
                     }
                 }
             }
@@ -325,11 +353,15 @@ namespace Vegas_Oscillator_Randomizer
                 }
                 param.SetValueAtTime(time, newValue);
 
-                if (applyInterpolation)
+                if (interpolate)
                 {
-                    foreach (OFXKeyframe keyframe in param.Keyframes)
+                    if (forceInterpolationType == -1)
                     {
-                        keyframe.Interpolation = interpolationType;
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = interpolationType;
+                    }
+                    else
+                    {
+                        param.Keyframes[param.Keyframes.Count - 1].Interpolation = (OFXInterpolationType)forceInterpolationType;
                     }
                 }
             }
@@ -339,7 +371,7 @@ namespace Vegas_Oscillator_Randomizer
             }
         }
 
-        public static void SetUpRadioButtons ()
+        public static void SetUpRadioButtons()
         {
             if (activeParameter.ParameterType == OFXParameterType.Double || activeParameter.ParameterType == OFXParameterType.Integer)
             {
@@ -382,7 +414,7 @@ namespace Vegas_Oscillator_Randomizer
             }
         }
 
-        private static void setUpRadioButton (int radioButtonIndex, bool enabled, string text = "")
+        private static void setUpRadioButton(int radioButtonIndex, bool enabled, string text = "")
         {
             RadioButton radioButton = radioButtons[radioButtonIndex];
 

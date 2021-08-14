@@ -41,7 +41,7 @@ namespace Vegas_Oscillator_Randomizer
             this.oscAmplitudeBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.oscWaveformDropdown = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@ namespace Vegas_Oscillator_Randomizer
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.wavelengthSecondsBox = new System.Windows.Forms.TextBox();
             this.wavelengthLabel2 = new System.Windows.Forms.Label();
@@ -78,7 +79,6 @@ namespace Vegas_Oscillator_Randomizer
             this.interpolationDropdown = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.fourthRadiobtn = new System.Windows.Forms.RadioButton();
-            this.label16 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -153,7 +153,7 @@ namespace Vegas_Oscillator_Randomizer
             this.tabPage1.Controls.Add(this.oscAmplitudeBox);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.comboBox3);
+            this.tabPage1.Controls.Add(this.oscWaveformDropdown);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -203,14 +203,15 @@ namespace Vegas_Oscillator_Randomizer
             this.label3.TabIndex = 1;
             this.label3.Text = "Waveform";
             // 
-            // comboBox3
+            // oscWaveformDropdown
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(97, 13);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(100, 21);
-            this.comboBox3.TabIndex = 0;
+            this.oscWaveformDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.oscWaveformDropdown.FormattingEnabled = true;
+            this.oscWaveformDropdown.Location = new System.Drawing.Point(97, 13);
+            this.oscWaveformDropdown.Name = "oscWaveformDropdown";
+            this.oscWaveformDropdown.Size = new System.Drawing.Size(100, 21);
+            this.oscWaveformDropdown.TabIndex = 0;
+            this.oscWaveformDropdown.SelectedIndexChanged += new System.EventHandler(this.oscWaveformDropdown_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -408,6 +409,15 @@ namespace Vegas_Oscillator_Randomizer
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Frequency";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(33, 147);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(199, 13);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "(Press ENTER to confirm after changing)";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -559,15 +569,6 @@ namespace Vegas_Oscillator_Randomizer
             this.fourthRadiobtn.Text = "A";
             this.fourthRadiobtn.UseVisualStyleBackColor = true;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(33, 147);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(199, 13);
-            this.label16.TabIndex = 10;
-            this.label16.Text = "(Press ENTER to confirm after changing)";
-            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,7 +617,7 @@ namespace Vegas_Oscillator_Randomizer
         private System.Windows.Forms.TextBox oscAmplitudeBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox oscWaveformDropdown;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox7;

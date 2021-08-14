@@ -16,6 +16,8 @@ namespace Vegas_Oscillator_Randomizer
 
             // These list items correspond to integers 1-6 from enum OFXInterpolationType
             interpolationDropdown.DataSource = new string[6] { "Linear", "Fast", "Slow", "Smooth", "Sharp", "Hold" };
+            // These list items correspond to integers 1-6 from enum Waveform
+            oscWaveformDropdown.DataSource = new string[5] { "Sine", "Cosine", "Triangle", "Sawtooth", "Square" };
 
             FrequencyControl.wavelengthFramesBox = wavelengthFramesBox;
             FrequencyControl.wavelengthSecondsBox = wavelengthSecondsBox;
@@ -58,6 +60,7 @@ namespace Vegas_Oscillator_Randomizer
                 parameterDropdown.DataSource = Clip.GetParameterNames();
 
                 Clip.SetUpRadioButtons();
+                restrictInterpolation();
 
                 ShowDialog();
             }
@@ -80,6 +83,24 @@ namespace Vegas_Oscillator_Randomizer
             return string.Join(", ", invalidNumberBoxNames);
         }
 
+        private void restrictInterpolation()
+        {
+            interpolationDropdown.Enabled = true;
+            if (tabControl.SelectedIndex == 0)
+            {
+                if (oscWaveformDropdown.SelectedIndex == 2)
+                {
+                    interpolationDropdown.SelectedIndex = 0;
+                    interpolationDropdown.Enabled = false;
+                }
+                else if (oscWaveformDropdown.SelectedIndex == 4)
+                {
+                    interpolationDropdown.SelectedIndex = 5;
+                    interpolationDropdown.Enabled = false;
+                }
+            }
+        }
+
         private void applyBtn_Click(object sender, EventArgs e)
         {
             Generator generator;
@@ -91,7 +112,7 @@ namespace Vegas_Oscillator_Randomizer
                     MessageBox.Show("The following settings do not have valid numerical values: " + invalidNumberBoxNames);
                     return;
                 }
-                generator = new Oscillator(Waveform.Sine, double.Parse(oscAmplitudeBox.Text), double.Parse(oscHeightBox.Text));
+                generator = new Oscillator((Waveform) oscWaveformDropdown.SelectedIndex, double.Parse(oscAmplitudeBox.Text), double.Parse(oscHeightBox.Text));
             }
             else if (tabControl.SelectedIndex == 1)
             {
@@ -103,15 +124,7 @@ namespace Vegas_Oscillator_Randomizer
                 // TODO new NoiseGenerator()
                 generator = new Oscillator(Waveform.Sine, 0, 0);
             }
-            int iteration = 0;
-            while (Timecode.FromFrames(iteration * FrequencyControl.wavelengthFrames) <= Clip.videoEvent.Length)
-            {
-                // Apply interpolation only if this is the final iteration through this loop
-                bool applyInterpolation = Timecode.FromFrames((iteration + 1) * FrequencyControl.wavelengthFrames) > Clip.videoEvent.Length;
-
-                Clip.MakeKeyframe(generator.GetValue(iteration), Timecode.FromFrames(iteration * FrequencyControl.wavelengthFrames), applyInterpolation);
-                iteration++;
-            }
+            generator.Generate();
 
             Close();
         }
@@ -158,8 +171,14 @@ namespace Vegas_Oscillator_Randomizer
             Clip.SetUpRadioButtons();
         }
 
+        private void oscWaveformDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            restrictInterpolation();
+        }
+
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            restrictInterpolation();
             if (tabControl.SelectedIndex == 0)
             {
                 wavelengthLabel1.Text = "One cycle every";
