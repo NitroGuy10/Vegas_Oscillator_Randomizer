@@ -10,8 +10,6 @@ namespace Vegas_Oscillator_Randomizer
         public static GUI MainGUI;
         public static Vegas Vegas;
 
-        // TODO switch between "one cycle every" and "new value every" in frequency labels based on currently open tab
-
         public GUI()
         {
             InitializeComponent();
@@ -65,11 +63,56 @@ namespace Vegas_Oscillator_Randomizer
             }
         }
 
+        private string VerifyNumberBoxes(TextBox[] textBoxes, string[] names)
+        {
+            List<string> invalidNumberBoxNames = new List<string>();
+            for (int i = 0; i < textBoxes.Length; i++)
+            {
+                try
+                {
+                    double.Parse(textBoxes[i].Text);
+                }
+                catch (FormatException)
+                {
+                    invalidNumberBoxNames.Add(names[i]);
+                }
+            }
+            return string.Join(", ", invalidNumberBoxNames);
+        }
+
         private void applyBtn_Click(object sender, EventArgs e)
         {
-            // Apply();
-            Clip.MakeKeyframe(0.0, Timecode.FromFrames(0), false);
-            Clip.MakeKeyframe(180.0, Clip.videoEvent.Length, true);
+            Generator generator;
+            if (tabControl.SelectedIndex == 0)
+            {
+                string invalidNumberBoxNames = VerifyNumberBoxes(new TextBox[2] { oscAmplitudeBox, oscHeightBox }, new string[2] { "Amplitude", "Height" });
+                if (!invalidNumberBoxNames.Equals(""))
+                {
+                    MessageBox.Show("The following settings do not have valid numerical values: " + invalidNumberBoxNames);
+                    return;
+                }
+                generator = new Oscillator(Waveform.Sine, double.Parse(oscAmplitudeBox.Text), double.Parse(oscHeightBox.Text));
+            }
+            else if (tabControl.SelectedIndex == 1)
+            {
+                // TODO new Randomizer()
+                generator = new Oscillator(Waveform.Sine, 0, 0);
+            }
+            else
+            {
+                // TODO new NoiseGenerator()
+                generator = new Oscillator(Waveform.Sine, 0, 0);
+            }
+            int iteration = 0;
+            while (Timecode.FromFrames(iteration * FrequencyControl.wavelengthFrames) <= Clip.videoEvent.Length)
+            {
+                // Apply interpolation only if this is the final iteration through this loop
+                bool applyInterpolation = Timecode.FromFrames((iteration + 1) * FrequencyControl.wavelengthFrames) > Clip.videoEvent.Length;
+
+                Clip.MakeKeyframe(generator.GetValue(iteration), Timecode.FromFrames(iteration * FrequencyControl.wavelengthFrames), applyInterpolation);
+                iteration++;
+            }
+
             Close();
         }
 
