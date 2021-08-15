@@ -51,15 +51,15 @@ namespace Vegas_Oscillator_Randomizer
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.noiseSpeedBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.noiseTypeDropdown = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.noiseMaxBox = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.noiseMinBox = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.noiseSeedBox = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -280,15 +280,15 @@ namespace Vegas_Oscillator_Randomizer
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Controls.Add(this.textBox2);
+            this.tabPage3.Controls.Add(this.noiseSpeedBox);
             this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.comboBox4);
+            this.tabPage3.Controls.Add(this.noiseTypeDropdown);
             this.tabPage3.Controls.Add(this.label29);
-            this.tabPage3.Controls.Add(this.textBox17);
+            this.tabPage3.Controls.Add(this.noiseMaxBox);
             this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.textBox18);
+            this.tabPage3.Controls.Add(this.noiseMinBox);
             this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Controls.Add(this.textBox19);
+            this.tabPage3.Controls.Add(this.noiseSeedBox);
             this.tabPage3.Controls.Add(this.label28);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -307,12 +307,12 @@ namespace Vegas_Oscillator_Randomizer
             this.label10.TabIndex = 18;
             this.label10.Text = "\"Speed\" = change in noise position per keyframe";
             // 
-            // textBox2
+            // noiseSpeedBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(97, 135);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 17;
+            this.noiseSpeedBox.Location = new System.Drawing.Point(97, 135);
+            this.noiseSpeedBox.Name = "noiseSpeedBox";
+            this.noiseSpeedBox.Size = new System.Drawing.Size(100, 20);
+            this.noiseSpeedBox.TabIndex = 17;
             // 
             // label5
             // 
@@ -323,14 +323,14 @@ namespace Vegas_Oscillator_Randomizer
             this.label5.TabIndex = 16;
             this.label5.Text = "\"Speed\"";
             // 
-            // comboBox4
+            // noiseTypeDropdown
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(97, 15);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(100, 21);
-            this.comboBox4.TabIndex = 15;
+            this.noiseTypeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.noiseTypeDropdown.FormattingEnabled = true;
+            this.noiseTypeDropdown.Location = new System.Drawing.Point(97, 15);
+            this.noiseTypeDropdown.Name = "noiseTypeDropdown";
+            this.noiseTypeDropdown.Size = new System.Drawing.Size(100, 21);
+            this.noiseTypeDropdown.TabIndex = 15;
             // 
             // label29
             // 
@@ -341,28 +341,28 @@ namespace Vegas_Oscillator_Randomizer
             this.label29.TabIndex = 14;
             this.label29.Text = "Type";
             // 
-            // textBox17
+            // noiseMaxBox
             // 
-            this.textBox17.Location = new System.Drawing.Point(97, 102);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(100, 20);
-            this.textBox17.TabIndex = 12;
+            this.noiseMaxBox.Location = new System.Drawing.Point(97, 102);
+            this.noiseMaxBox.Name = "noiseMaxBox";
+            this.noiseMaxBox.Size = new System.Drawing.Size(100, 20);
+            this.noiseMaxBox.TabIndex = 12;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(13, 105);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(81, 13);
+            this.label26.Size = new System.Drawing.Size(78, 13);
             this.label26.TabIndex = 11;
-            this.label26.Text = "Max (Exclusive)";
+            this.label26.Text = "Max (Inclusive)";
             // 
-            // textBox18
+            // noiseMinBox
             // 
-            this.textBox18.Location = new System.Drawing.Point(97, 76);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(100, 20);
-            this.textBox18.TabIndex = 10;
+            this.noiseMinBox.Location = new System.Drawing.Point(97, 76);
+            this.noiseMinBox.Name = "noiseMinBox";
+            this.noiseMinBox.Size = new System.Drawing.Size(100, 20);
+            this.noiseMinBox.TabIndex = 10;
             // 
             // label27
             // 
@@ -373,12 +373,12 @@ namespace Vegas_Oscillator_Randomizer
             this.label27.TabIndex = 9;
             this.label27.Text = "Min (Inclusive)";
             // 
-            // textBox19
+            // noiseSeedBox
             // 
-            this.textBox19.Location = new System.Drawing.Point(97, 42);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(100, 20);
-            this.textBox19.TabIndex = 8;
+            this.noiseSeedBox.Location = new System.Drawing.Point(97, 42);
+            this.noiseSeedBox.Name = "noiseSeedBox";
+            this.noiseSeedBox.Size = new System.Drawing.Size(100, 20);
+            this.noiseSeedBox.TabIndex = 8;
             // 
             // label28
             // 
@@ -624,13 +624,13 @@ namespace Vegas_Oscillator_Randomizer
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox randSeedBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox noiseTypeDropdown;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox noiseMaxBox;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox noiseMinBox;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox noiseSeedBox;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
@@ -650,7 +650,7 @@ namespace Vegas_Oscillator_Randomizer
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RadioButton fourthRadiobtn;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox noiseSpeedBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox oscHeightBox;

@@ -16,8 +16,11 @@ namespace Vegas_Oscillator_Randomizer
 
             // These list items correspond to integers 1-6 from enum OFXInterpolationType
             interpolationDropdown.DataSource = new string[6] { "Linear", "Fast", "Slow", "Smooth", "Sharp", "Hold" };
-            // These list items correspond to integers 1-6 from enum Waveform
+            // These list items correspond to integers 0-4 from enum Waveform
             oscWaveformDropdown.DataSource = new string[5] { "Sine", "Cosine", "Triangle", "Sawtooth", "Square" };
+            // These list items correspond to integers 0-5 from enum FastNoiseLite.NoiseType
+            noiseTypeDropdown.DataSource = new string[6] { "OpenSimplex", "OpenSimplex2S", "Cellular", "Perlin", "ValueCubic", "Value" };
+            noiseTypeDropdown.SelectedIndex = 3;
 
             FrequencyControl.wavelengthFramesBox = wavelengthFramesBox;
             FrequencyControl.wavelengthSecondsBox = wavelengthSecondsBox;
@@ -137,8 +140,18 @@ namespace Vegas_Oscillator_Randomizer
             }
             else
             {
-                // TODO new NoiseGenerator()
-                generator = new Oscillator(Waveform.Sine, 0, 0);
+                if (!VerifyDoubleBoxes(new TextBox[3] { noiseMaxBox, noiseMinBox, noiseSpeedBox }, new string[3] { "Maximum", "Minimum", "Speed" }))
+                {
+                    return;
+                }
+                if (randSeedBox.Text.Equals(""))
+                {
+                    generator = new NoiseGenerator(0, (FastNoiseLite.NoiseType) noiseTypeDropdown.SelectedIndex, double.Parse(noiseMinBox.Text), double.Parse(noiseMaxBox.Text), double.Parse(noiseSpeedBox.Text), true);
+                }
+                else
+                {
+                    generator = new NoiseGenerator(randSeedBox.Text.GetHashCode(), (FastNoiseLite.NoiseType)noiseTypeDropdown.SelectedIndex, double.Parse(noiseMinBox.Text), double.Parse(noiseMaxBox.Text), double.Parse(noiseSpeedBox.Text));
+                }
             }
             generator.Generate();
 

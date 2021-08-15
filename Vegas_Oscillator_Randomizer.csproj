@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clip.cs" />
+    <Compile Include="FastNoiseLite.cs" />
     <Compile Include="FrequencyControl.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="GUI.cs">
@@ -62,6 +63,7 @@
       <DependentUpon>GUI.cs</DependentUpon>
     </Compile>
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="NoiseGenerator.cs" />
     <Compile Include="Oscillator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizer.cs" />
