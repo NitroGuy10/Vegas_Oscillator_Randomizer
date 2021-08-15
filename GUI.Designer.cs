@@ -588,7 +588,7 @@ namespace Vegas_Oscillator_Randomizer
             this.Controls.Add(this.effectDropdown);
             this.Controls.Add(this.applyBtn);
             this.Name = "GUI";
-            this.Text = "NitroGuy\'s Oscillator/Randomizer";
+            this.Text = "NitroGuy\'s Oscillator/Randomizer (v1.0)";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
