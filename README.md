@@ -14,4 +14,4 @@ Usually, it's something like C:\\Program Files\\VEGAS\\VEGAS Pro 18.0\\Script Me
 
 From Vegas, you can find it under Tools > Scripting > OscillatorRandomizer
 
-You can also add it to your toolbar by double-clicking on the toolbar, choosing ChromaticAberration from the left menu, and clicking "Add ->".
+You can also add it to your toolbar by double-clicking on the toolbar, choosing OscillatorRandomizer from the left menu, and clicking "Add ->".
